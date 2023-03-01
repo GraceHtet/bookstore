@@ -1,16 +1,24 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Button from './Button';
+import { addBook } from '../redux/books/booksSlice';
 
 const Form = () => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('Author');
+  const [author, setAuthor] = useState('');
 
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onAuthorChanged = (e) => setAuthor(e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addBook({ title, author }));
+  };
 
   return (
     <div>
       <h2>Add a New Book</h2>
-      <form action="" method="" onSubmit={(e) => e.preventDefault}>
+      <form action="" method="" onSubmit={handleSubmit}>
         <input
           type="text"
           name="text"
@@ -19,11 +27,19 @@ const Form = () => {
           onChange={onTitleChanged}
           value={title}
         />
-        <select name="author" value={author} onChange={onAuthorChanged}>
+        <input
+          type="text"
+          name="author"
+          id="author"
+          placeholder="Book Author"
+          onChange={onAuthorChanged}
+          value={author}
+        />
+        {/* <select name="author" value={author} onChange={onAuthorChanged}>
           <option value="Mary">Mary</option>
           <option value="Grey">Grey</option>
-        </select>
-        <button type="submit">Add Book</button>
+        </select> */}
+        <Button type="submit" className="add-btn" value="Add book" />
       </form>
     </div>
   );
