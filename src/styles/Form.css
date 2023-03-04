@@ -1,0 +1,30 @@
+.book-form h2 {
+  color: gray;
+}
+
+.form-control {
+  font-size: 16px;
+  padding: 2% 3%;
+  border: 1px solid rgb(215, 215, 215);
+  border-radius: 5px;
+}
+
+.form-control::placeholder {
+  color: rgb(215, 215, 215);
+}
+
+form {
+  display: grid;
+  grid-template-columns: 57% 22% 15%;
+  column-gap: 3%;
+}
+
+.author-inp {
+  padding: 2% 8%;
+  grid-column: 2 / span 1;
+}
+
+.add-btn {
+  font-size: 12px;
+  text-transform: uppercase;
+}

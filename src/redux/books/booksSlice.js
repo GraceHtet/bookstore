@@ -1,26 +1,39 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/RAUTP306QCQqd49yd8a7/books';
 
 const initialState = {
-  booksList: [
-    {
-      item_id: 'item1',
-      title: 'The Great Gatsby',
-      author: 'John Smith',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item2',
-      title: 'Anna Karenina',
-      author: 'Leo Tolstoy',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item3',
-      title: 'The Selfish Gene',
-      author: 'Richard Dawkins',
-      category: 'Nonfiction',
-    },
-  ],
+  id: '',
+  booksList: [],
+  isLoading: false,
+};
+
+export const getBookApi = createAsyncThunk('books/getBookApi', async () => {
+  const res = await axios.get(url);
+  return { ...res.data };
+});
+
+export const postBookApi = createAsyncThunk('books/postBookApi', async (book) => {
+  const res = await axios.post(url, book);
+  return res.data;
+});
+
+export const deleteBookApi = createAsyncThunk('books/deleteBookApi', async (id) => {
+  const res = await axios.delete(`${url}/${id}`);
+  return res.data;
+});
+
+const newArr = (load) => {
+  const keys = Object.keys(load);
+  const arr = [];
+  keys.forEach((key) => {
+    arr.push({
+      item_id: key,
+      ...load[key][0],
+    });
+  });
+  return arr;
 };
 
 const booksSlice = createSlice({
@@ -36,7 +49,28 @@ const booksSlice = createSlice({
       return list;
     },
   },
+  extraReducers(builder) {
+    builder
+      .addCase(getBookApi.pending, (state) => ({ ...state, isLoading: true }))
+      .addCase(getBookApi.fulfilled, (state, action) => {
+        const arr = newArr(action.payload);
+        return {
+          booksList: [...arr],
+          isLoading: true,
+        };
+      })
+      .addCase(postBookApi.fulfilled, (state) => ({
+        ...state,
+      }))
+      .addCase(deleteBookApi.fulfilled, (state) => ({
+        ...state,
+        isLoading: true,
+      }));
+  },
 });
+
+export const getAllBooks = (state) => state.books.booksList;
+export const getStatus = (state) => state.books.isLoading;
 
 export const { addBook, removeBook } = booksSlice.actions;
 

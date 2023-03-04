@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from './Button';
-import { addBook } from '../redux/books/booksSlice';
+import { postBookApi, addBook } from '../redux/books/booksSlice';
+import '../styles/Form.css';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -12,11 +13,22 @@ const Form = () => {
   const onAuthorChanged = (e) => setAuthor(e.target.value);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addBook({ title, author }));
+    const book = {
+      item_id: crypto.randomUUID(),
+      title,
+      author,
+      category: 'Mystery',
+    };
+    if (title !== '' && author !== '') {
+      dispatch(addBook(book));
+      dispatch(postBookApi(book));
+    }
+    setTitle('');
+    setAuthor('');
   };
 
   return (
-    <div>
+    <div className="book-form">
       <h2>Add a New Book</h2>
       <form action="" method="" onSubmit={handleSubmit}>
         <input
@@ -25,6 +37,7 @@ const Form = () => {
           id="text"
           placeholder="Book Title"
           onChange={onTitleChanged}
+          className="form-control name-inp"
           value={title}
         />
         <input
@@ -33,6 +46,7 @@ const Form = () => {
           id="author"
           placeholder="Book Author"
           onChange={onAuthorChanged}
+          className="form-control author-inp"
           value={author}
         />
         {/* <select name="author" value={author} onChange={onAuthorChanged}>

@@ -1,0 +1,47 @@
+nav {
+  background: #fff;
+  padding: 1.5% 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.pg-title {
+  color: inherit;
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
+nav ul {
+  display: flex;
+  width: 15%;
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: rgb(166, 166, 166);
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.8pt;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  color: gray;
+}
+
+.user {
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgb(239, 239, 239);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
