@@ -1,0 +1,119 @@
+.book {
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1.5px solid rgb(224, 224, 224);
+  padding: 3%;
+  margin: 2% 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-container {
+  width: 50%;
+}
+
+.category,
+.title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.category {
+  color: gray;
+  font-size: 12px;
+}
+
+.author {
+  color: rgb(35, 149, 255);
+  font-size: 14px;
+  margin: 0;
+}
+
+.btn-container {
+  width: 40%;
+  padding: 2% 0;
+  display: flex;
+  align-items: center;
+}
+
+.btn,
+.remove-btn {
+  background-color: transparent;
+  color: rgb(35, 149, 255);
+  padding: 0;
+}
+
+.info-container hr {
+  height: 20px;
+  border: 1px solid rgb(224, 224, 224);
+}
+
+.progress-chapter {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.progress-chapter hr {
+  height: 80%;
+  border: 1.5px solid rgb(244, 244, 244);
+  margin: 8px 40px;
+}
+
+.percent-container {
+  column-gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.circle {
+  width: 4.5em;
+  height: 4.5em;
+  background: conic-gradient(rgb(35, 149, 255) 234deg, rgb(236, 236, 236) 0deg);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.circle::before {
+  content: '';
+  width: 85%;
+  height: 85%;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.percent {
+  font-size: 2em;
+  margin: 0;
+}
+
+.status {
+  color: rgb(182, 182, 182);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.book-chap {
+  width: 50%;
+}
+
+.chap-now {
+  color: rgb(182, 182, 182);
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 0;
+}
+
+.chap {
+  margin-top: 2%;
+}
+
+.update-btn {
+  background-color: rgb(35, 149, 255);
+  color: #ededed;
+  text-transform: uppercase;
+  padding: 3% 10%;
+}

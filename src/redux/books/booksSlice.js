@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// eslint-disable-next-line operator-linebreak
-const url =
-  'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/RAUTP306QCQqd49yd8a7/books';
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/RAUTP306QCQqd49yd8a7/books';
 
 const initialState = {
   id: '',
@@ -22,7 +20,6 @@ export const postBookApi = createAsyncThunk('books/postBookApi', async (book) =>
 });
 
 export const deleteBookApi = createAsyncThunk('books/deleteBookApi', async (id) => {
-  console.log(id);
   const res = await axios.delete(`${url}/${id}`);
   return res.data;
 });
