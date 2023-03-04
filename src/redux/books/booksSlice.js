@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url =
-  'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/RAUTP306QCQqd49yd8a7/books';
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/RAUTP306QCQqd49yd8a7/books';
 
 const initialState = {
   id: '',
@@ -68,28 +67,7 @@ const booksSlice = createSlice({
         isLoading: true,
       }));
   },
-  extraReducers(builder) {
-    builder
-      .addCase(getBookApi.pending, (state) => ({ ...state, isLoading: true }))
-      .addCase(getBookApi.fulfilled, (state, action) => {
-        const arr = newArr(action.payload);
-        return {
-          booksList: [...arr],
-          isLoading: true,
-        };
-      })
-      .addCase(postBookApi.fulfilled, (state) => ({
-        ...state,
-      }))
-      .addCase(deleteBookApi.fulfilled, (state) => ({
-        ...state,
-        isLoading: true,
-      }));
-  },
 });
-
-export const getAllBooks = (state) => state.books.booksList;
-export const getStatus = (state) => state.books.isLoading;
 
 export const getAllBooks = (state) => state.books.booksList;
 export const getStatus = (state) => state.books.isLoading;
