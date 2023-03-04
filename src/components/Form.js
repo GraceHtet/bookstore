@@ -49,10 +49,6 @@ const Form = () => {
           className="form-control author-inp"
           value={author}
         />
-        {/* <select name="author" value={author} onChange={onAuthorChanged}>
-          <option value="Mary">Mary</option>
-          <option value="Grey">Grey</option>
-        </select> */}
         <Button type="submit" className="add-btn" value="Add book" />
       </form>
     </div>
